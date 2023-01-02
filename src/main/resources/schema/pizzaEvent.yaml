@@ -1,0 +1,28 @@
+$schema: "http://json-schema.org/draft/2019-09/schema#"
+$id: "https://barry.com/pizza-event"
+title: PizzaOrderEvent
+description: Represents the event when a Pizza order is submitted
+# Java Class to create from this schema
+javaType: com.barry.kafkaconsumer.entities.PizzaOrderEvent
+type: object
+additionalProperties: false
+required:
+  - size
+  - toppings
+  - cheese
+properties:
+  size:
+    type: string
+  cheese:
+    type: string
+  toppings:
+    description: "Toppings for Pizza"
+    type: array
+    items:
+      type: object
+      properties:
+        name: 
+          type: string
+        modifier: 
+          type: string
+
