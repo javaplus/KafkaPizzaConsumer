@@ -1,3 +1,14 @@
+## Outline
+
+- Have Kafka running in Docker
+- Use console consumer and producer to test
+- Use Kcat to consume and produce
+- Create SpringBoot App and create simple consumer 
+- Show group console commands to show offsets
+- Use KafDrop to show offsets.
+
+
+
 ## Getting an Offset in the first place.
 Consumers use `auto.offset.reset.`  to determine the starting offset.  Only applies if there are no committed offsets for that group.  **earliset** or **latest** are the common options.  Demonstrate this.
 
@@ -32,3 +43,10 @@ https://kafka.apache.org/documentation/#consumerconfigs
 ##### Kafka Listener
 
 https://docs.spring.io/spring-kafka/api/org/springframework/kafka/annotation/KafkaListener.html
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/messaging.html#messaging.kafka
+
+- Config Properties:  
+https://docs.spring.io/spring-boot/docs/current/reference/html/messaging.html#messaging.kafka.additional-properties
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties.integration
