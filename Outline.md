@@ -6,6 +6,12 @@
 - Create SpringBoot App and create simple consumer 
 - Show group console commands to show offsets
 - Use KafDrop to show offsets.
+- put delay in consumer and show what happens when sending a batch of records and then killing the app
+- Talk about "at least once", "at most once", and "exactly once"???
+- Print out Offset and Partition of message.
+- Make code error out (throw exception) and see loop/retry then seek ahead.
+- Create errorhandler.
+- 
 
 
 
@@ -50,3 +56,7 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/messaging.html#me
 https://docs.spring.io/spring-boot/docs/current/reference/html/messaging.html#messaging.kafka.additional-properties
 
 https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties.integration
+
+##### Error Hanlding:
+
+https://docs.spring.io/spring-kafka/reference/html/#annotation-error-handling
