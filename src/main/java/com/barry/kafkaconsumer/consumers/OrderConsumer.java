@@ -1,9 +1,13 @@
 package com.barry.kafkaconsumer.consumers;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.listener.CommonErrorHandler;
+import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.stereotype.Service;
 
+import com.barry.kafkaconsumer.consumers.errors.EventErrorHandler;
 import com.barry.kafkaconsumer.entities.PizzaOrderEvent;
 
 
@@ -20,5 +24,12 @@ public class OrderConsumer {
             throw new Exception("No stinking Super Small Pizzas allowed");
         }
         System.out.println("Order Message Value:" + event);
+    }
+
+    @Bean
+    public DefaultErrorHandler errorHandler(){
+        System.out.println("Creating my error handler");
+        DefaultErrorHandler errorHandler = new EventErrorHandler();
+        return errorHandler;
     }
 }
