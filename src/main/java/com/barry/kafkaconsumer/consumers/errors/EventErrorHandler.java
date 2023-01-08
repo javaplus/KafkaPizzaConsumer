@@ -1,15 +1,19 @@
 package com.barry.kafkaconsumer.consumers.errors;
 
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.springframework.kafka.listener.DefaultErrorHandler;
+import org.springframework.kafka.listener.ListenerExecutionFailedException;
 import org.springframework.kafka.listener.MessageListenerContainer;
+import org.springframework.kafka.support.serializer.DeserializationException;
 
 public class EventErrorHandler extends DefaultErrorHandler{
+
 
     @Override
     public void handleBatch(Exception thrownException, ConsumerRecords<?, ?> data, Consumer<?, ?> consumer,
@@ -44,6 +48,21 @@ public class EventErrorHandler extends DefaultErrorHandler{
     public void handleRemaining(Exception thrownException, List<ConsumerRecord<?, ?>> records, Consumer<?, ?> consumer,
             MessageListenerContainer container) {
         System.out.println("Handle Remaining");
+        for (ConsumerRecord<?,?> consumerRecord : records) {
+            System.out.println("Record Message=" + consumerRecord.value());
+        }  
+        if(thrownException instanceof ListenerExecutionFailedException){
+            System.out.println("It's a ListenerExecutionFailedException !!!!!!");
+            ListenerExecutionFailedException listenerExecutionFailedException = (ListenerExecutionFailedException) thrownException;
+            Throwable causedBy = listenerExecutionFailedException.getCause();
+            if(causedBy instanceof DeserializationException){
+                System.out.println("We have a DeserializationException");
+                DeserializationException deserializationException = (DeserializationException) causedBy;
+                // Get the bytes and convert to a string
+                String messageAsString = new String(deserializationException.getData(), StandardCharsets.UTF_8);
+                System.out.println("Message we couldn't deserialize=" + messageAsString);
+            }
+        }       
         super.handleRemaining(thrownException, records, consumer, container);
     }
 
