@@ -17,3 +17,10 @@ docker run -d --rm -p 9000:9000 --network=kafka-nw -e KAFKA_BROKERCONNECT=kafka:
 
 
 
+# Great Links
+
+[Kafka Offset Management Confluent](https://docs.confluent.io/platform/current/clients/consumer.html#offset-management)
+
+[Consumer Configs](https://kafka.apache.org/documentation/#consumerconfigs)
+
+[Spring Kakfa Committing Offsets](https://docs.spring.io/spring-kafka/reference/html/#committing-offsets)
